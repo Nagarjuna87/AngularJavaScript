@@ -1,0 +1,17 @@
+<select ng-model=”firstValue”>
+<option value=”1”>1</option>
+<option value=”1”>1</option>
+<option value=”1”>1</option>
+</select>
+
+<select ng-model=”secondValue” ng-if=”firstValue” >
+<option value=”2”>2</option>
+<option value=”2”>2</option>
+<option value=”2”>2</option>
+</select>
+
+<select ng-model=”thirdValue” ng-if=”secondValue”>
+<option value=”3”>3</option>
+<option value=”3”>3</option>
+<option value=”3”>3</option>
+</select>
