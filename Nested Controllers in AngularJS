@@ -1,0 +1,66 @@
+<html ng-app="HCLApp">
+<head>
+<title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ParentCtrl">
+ 
+  <div ng-controller="ChildCtrlA">
+  <select ng-change="updateUser()" ng-model="selectedUser">
+   <option ng-repeat="user in users" value="{{user.id}}">{{user.text}}</option>
+   </select>
+ </div>
+ <div ng-controller="ChildCtrlB">
+  <select ng-change="updateUser()" ng-model="selectedUser1">
+   <option ng-repeat="user in users" value="{{user.id}}">{{user.text}}</option>
+   </select>
+ </div>
+</div>
+</div>
+<script type="text/javascript">
+ var app = angular.module("HCLApp", []);
+ app.controller("ParentCtrl", function($scope){
+ $scope.users = [
+ 	{
+   	'id': 'Samp_1',
+   	'text': "Sample1"
+    	
+ 	},
+ 	{
+   	'id': 'Samp_2',
+   	'text': "Sample2"
+ 	},
+ 	{
+   	'id': 'Samp_3',
+   	'text': "Sample3"
+ 	}
+ 	];
+	
+  
+  
+  $scope.$on("User", function(event,newData){
+   $scope.$broadcast('NewUser', newData );
+  })
+   
+  
+ }).controller("ChildCtrlA", function($scope){
+	$scope.updateUser = function(){
+	$scope.$emit('User', $scope.selectedUser)
+	}
+	$scope.$on('NewUser', function(event, newUser){
+	$scope.selectedUser = newUser;
+	});
+  
+ 	
+ }).controller("ChildCtrlB", function($scope){
+  $scope.updateUser = function(){
+	$scope.$emit('User', $scope.selectedUser1)
+	}
+	$scope.$on('NewUser', function(event, newUser){
+	$scope.selectedUser1 = newUser;
+	}); 
+ });
+</script>
+</body>
+</html>
