@@ -1,0 +1,9 @@
+angular.module(“HelloWorld”, []).controller(“HelloCrtl”, function($scope){
+ $scope.name = “Hello”
+}).controller(“WorldCrtl”, function($scope){
+$scope.name = “World”
+});
+
+<div ng-controller=”HelloCrtl”>
+{{name}} <div ng-controller=”WorldCrtl”>{{name}}</div>
+</div>
