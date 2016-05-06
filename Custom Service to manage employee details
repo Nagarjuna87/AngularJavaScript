@@ -1,0 +1,40 @@
+app.service('EmployeeService', function() {
+     var employee = {
+           'name' : '',
+           'email' : '',
+           'role' : '',
+           'working' : {},
+           'salary' : ''
+       }
+   var employees = [];
+   this.addEmployee = function(name,email,role) {
+           employee.name = name
+           employee.email = email
+           employee.role = role
+           employees.push(employee)
+       }
+   this.addHours = function(email,day,hours){
+        for(var i in employees){
+          if(employees[i].email == email){
+              employees[i].working.hours = hours
+              employees[i].working.day = day
+          }else{
+              return false
+          }
+       }
+   }
+   
+   this.getEmployees = function() {
+           return employees
+       }
+   this.getEmployee = function(email){
+       for(var i in employees){
+          if(employees[i].email == email){
+              return true
+          }else{
+              return false
+          }
+       }
+       
+   }
+});
